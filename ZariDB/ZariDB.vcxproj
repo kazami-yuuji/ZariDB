@@ -146,6 +146,7 @@
     <ClCompile Include="utils\File.cpp" />
     <ClCompile Include="utils\String.cpp" />
     <ClCompile Include="zdb\Database.cpp" />
+    <ClCompile Include="zdb\DbRecordsPage.cpp" />
     <ClCompile Include="zdb\DbScheme.cpp" />
     <ClCompile Include="zdb\TableScheme.cpp" />
   </ItemGroup>

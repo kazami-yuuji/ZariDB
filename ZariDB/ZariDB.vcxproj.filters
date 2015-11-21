@@ -17,6 +17,9 @@
     <ClCompile Include="zdb\TableScheme.cpp">
       <Filter>zdb</Filter>
     </ClCompile>
+    <ClCompile Include="zdb\DbRecordsPage.cpp">
+      <Filter>zdb</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="utils">
