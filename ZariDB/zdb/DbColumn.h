@@ -26,6 +26,20 @@ namespace zdb
 			this->dataType = dataType;
 		}
 
+		DbColumn(const DbColumn& dbColumn)
+		{
+			hHeap = GetProcessHeap();
+			if (!hHeap)
+			{
+				throw utils::HeapException();
+			}
+			nameLength = lstrlenW(dbColumn.name);
+			this->name = static_cast<zchar*>(HeapAlloc(hHeap,
+				HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY, sizeof(zchar) * (nameLength + 1)));
+			memcpy(this->name, dbColumn.name, sizeof(zchar) * nameLength);
+			this->dataType = dbColumn.dataType;
+		}
+
 		~DbColumn()
 		{
 			HeapFree(hHeap, NULL, name);

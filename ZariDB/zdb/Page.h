@@ -47,9 +47,9 @@ namespace zdb
 
 		void RewriteFreeBytesValues(zint32 dataSize)
 		{
+			file->Seek(freeBytesCountOffset);
 			firstFreeByteOffset += dataSize;
 			freeBytesCount -= dataSize;
-			file->Seek(firstFreeByteOffset);
 			file->Write(&this->freeBytesCount, sizeof(this->freeBytesCount));
 			file->Write(&this->firstFreeByteOffset, sizeof(this->firstFreeByteOffset));
 		}
