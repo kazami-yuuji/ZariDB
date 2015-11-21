@@ -14,6 +14,9 @@
     <ClCompile Include="zdb\DbScheme.cpp">
       <Filter>zdb</Filter>
     </ClCompile>
+    <ClCompile Include="zdb\TableScheme.cpp">
+      <Filter>zdb</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="utils">
@@ -43,6 +46,18 @@
       <Filter>zdb</Filter>
     </ClInclude>
     <ClInclude Include="zdb\DbScheme.h">
+      <Filter>zdb</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\TableScheme.h">
+      <Filter>zdb</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\DbColumn.h">
+      <Filter>zdb</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\DbDataType.h">
+      <Filter>zdb</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\DbRecordsPage.h">
       <Filter>zdb</Filter>
     </ClInclude>
   </ItemGroup>

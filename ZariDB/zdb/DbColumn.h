@@ -1,0 +1,37 @@
+#pragma once
+#include <Windows.h>
+#include "..\utils\types.h"
+#include "DbDataType.h"
+#include "../utils/String.h"
+
+namespace zdb
+{
+	struct DbColumn
+	{
+		zint32 nameLength;
+		zchar* name;
+		DbDataType dataType;
+
+		DbColumn(const zchar* name, DbDataType dataType)
+		{
+			hHeap = GetProcessHeap();
+			if (!hHeap)
+			{
+				throw utils::HeapException();
+			}
+			nameLength = lstrlenW(name);
+			this->name = static_cast<zchar*>(HeapAlloc(hHeap,
+				HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY, sizeof(zchar) * (nameLength + 1)));
+			memcpy(this->name, name, sizeof(zchar) * nameLength);
+			this->dataType = dataType;
+		}
+
+		~DbColumn()
+		{
+			HeapFree(hHeap, NULL, name);
+		}
+
+	private:
+		HANDLE hHeap;
+	};
+}

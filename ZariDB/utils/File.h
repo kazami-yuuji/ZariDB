@@ -46,6 +46,7 @@ namespace utils
 		void Read(void* data, zuint32 count) const;
 		void Seek(zint64 position) const;
 		zint64 Tell() const;
+		void Flush() const;
 		~File();
 
 	private:

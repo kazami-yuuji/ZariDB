@@ -65,6 +65,11 @@ zint64 utils::File::Tell() const
 	return result;
 }
 
+void utils::File::Flush() const
+{
+	FlushFileBuffers(hFile);
+}
+
 utils::File::~File()
 {
 	if (!hFile)

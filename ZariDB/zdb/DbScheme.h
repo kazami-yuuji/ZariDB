@@ -5,6 +5,8 @@ namespace zdb
 {
 	class DbScheme : public Page
 	{
-		explicit DbScheme(utils::File* file);
+	public:
+		explicit DbScheme(utils::File* file, zint32 pageNumber);
+		~DbScheme() override {}
 	};
 }
