@@ -45,18 +45,24 @@ void utils::File::Read(void* data, zuint32 count) const
 	}
 }
 
-void utils::File::Seek(zint32 position) const
+void utils::File::Seek(zint64 position) const
 {
-	auto result = SetFilePointer(hFile, position, nullptr, FILE_BEGIN);
+	zint32 low = position & 0xFFFFFFFF;
+	zint32l high = position >> 32;
+	auto result = SetFilePointer(hFile, low, &high, FILE_BEGIN);
 	if (result == INVALID_SET_FILE_POINTER)
 	{
 		throw FileException();
 	}
 }
 
-zuint32l utils::File::Tell() const
+zint64 utils::File::Tell() const
 {
-	return SetFilePointer(hFile, 0, nullptr, FILE_CURRENT);
+	auto low = 0;
+	zint32l high = 0;
+	low = SetFilePointer(hFile, 0, &high, FILE_CURRENT);
+	auto result = (static_cast<zint64>(high) << 32) | low;
+	return result;
 }
 
 utils::File::~File()

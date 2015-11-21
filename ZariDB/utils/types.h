@@ -2,6 +2,7 @@
 
 #ifdef _WIN32
 typedef wchar_t zchar;
+typedef char zchara;
 typedef char zint8;
 typedef unsigned char zuint8;
 typedef short zint16;

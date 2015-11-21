@@ -11,6 +11,9 @@
     <ClCompile Include="utils\String.cpp">
       <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="zdb\DbScheme.cpp">
+      <Filter>zdb</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="utils">
@@ -32,6 +35,15 @@
     </ClInclude>
     <ClInclude Include="utils\String.h">
       <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\DbPageType.h">
+      <Filter>zdb</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\Page.h">
+      <Filter>zdb</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\DbScheme.h">
+      <Filter>zdb</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

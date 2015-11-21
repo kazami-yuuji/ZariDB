@@ -146,12 +146,16 @@
     <ClCompile Include="utils\File.cpp" />
     <ClCompile Include="utils\String.cpp" />
     <ClCompile Include="zdb\Database.cpp" />
+    <ClCompile Include="zdb\DbScheme.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\File.h" />
     <ClInclude Include="utils\String.h" />
     <ClInclude Include="utils\types.h" />
     <ClInclude Include="zdb\Database.h" />
+    <ClInclude Include="zdb\DbPageType.h" />
+    <ClInclude Include="zdb\DbScheme.h" />
+    <ClInclude Include="zdb\Page.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

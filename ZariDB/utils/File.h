@@ -41,10 +41,11 @@ namespace utils
 	public:
 		File(const zchar* const filename, FileAccess access, FileShare share,
 			FileMode mode, FileType type);
+		File(const File&) = delete;
 		void Write(const void* data, zuint32 count) const;
 		void Read(void* data, zuint32 count) const;
-		void Seek(zint32 position) const;
-		zuint32l Tell() const;
+		void Seek(zint64 position) const;
+		zint64 Tell() const;
 		~File();
 
 	private:
