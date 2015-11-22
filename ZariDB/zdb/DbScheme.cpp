@@ -1,4 +1,5 @@
 #include "DbScheme.h"
+#include "Database.h"
 
 zdb::DbScheme::DbScheme(utils::File* file, bool create, Database* db) : Page(file, 0, DbPageType::DbScheme, create, db)
 {

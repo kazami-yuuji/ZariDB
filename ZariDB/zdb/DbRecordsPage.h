@@ -1,4 +1,6 @@
 #pragma once
+#include "../utils/types.h"
+#include "../utils/File.h"
 #include "Page.h"
 
 namespace zdb

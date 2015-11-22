@@ -1,10 +1,13 @@
 #pragma once
-#include "DbPageType.h"
+#include <exception>
+#include "../utils/types.h"
 #include "../utils/File.h"
-#include "Database.h"
+#include "DbPageType.h"
 
 namespace zdb
 {
+	class Database;
+
 	struct PageTypeIsInvalidException : std::exception
 	{
 		char const* what() const override
@@ -101,6 +104,4 @@ namespace zdb
 			- sizeof(DbPageType) - sizeof(zint64) * 2;
 		static const zint32 FIRST_FREE_BYTE_INITIAL_FROM_PAGE_HEAD = PAGE_SIZE - PAGE_FREE_BYTES_INITIAL;
 	};
-
-	
 }

@@ -1,8 +1,10 @@
 #pragma once
-#include "Page.h"
-#include "TableScheme.h"
 #include <vector>
-#include "Database.h"
+#include "../utils/types.h"
+#include "../utils/File.h"
+#include "../utils/String.h"
+#include "DbColumn.h"
+#include "TableScheme.h"
 
 namespace zdb
 {

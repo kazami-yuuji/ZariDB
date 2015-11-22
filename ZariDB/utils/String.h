@@ -1,6 +1,6 @@
 #pragma once
 #include <Windows.h>
-#include <system_error>
+#include <exception>
 #include "types.h"
 
 namespace utils

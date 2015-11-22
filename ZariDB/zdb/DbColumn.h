@@ -1,8 +1,8 @@
 #pragma once
 #include <Windows.h>
-#include "..\utils\types.h"
-#include "DbDataType.h"
+#include "../utils/types.h"
 #include "../utils/String.h"
+#include "DbDataType.h"
 
 namespace zdb
 {

@@ -17,7 +17,6 @@ zdb::Database::Database(const zchar* dbname, bool create)
 #endif
 		file->Write(SIGNATURE, sizeof(SIGNATURE));
 		pageNumber = 1;
-		scheme = DbScheme::CreateScheme(file, this);
 	}
 	else
 	{
@@ -31,7 +30,6 @@ zdb::Database::Database(const zchar* dbname, bool create)
 		{
 			throw DbFileNotValidException();
 		}
-		scheme = DbScheme::OpenScheme(file, this);
 	}
 }
 
@@ -43,12 +41,14 @@ zdb::Database::~Database()
 zdb::Database* zdb::Database::Create(const zchar* dbname)
 {
 	auto database = new Database(dbname, true);
+	database->scheme = DbScheme::CreateScheme(database->file, database);
 	return database;
 }
 
 zdb::Database* zdb::Database::Open(const zchar* dbname)
 {
 	auto database = new Database(dbname, false);
+	database->scheme = DbScheme::OpenScheme(database->file, database);
 	return database;
 }
 
