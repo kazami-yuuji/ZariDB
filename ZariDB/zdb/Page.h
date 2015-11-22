@@ -99,6 +99,13 @@ namespace zdb
 			file->Write(&this->firstFreeByteOffset, sizeof(this->firstFreeByteOffset));
 		}
 
+		void SetNextPage(zint32 nextPageNumber)
+		{
+			nextPageOffset = PAGE_SIZE * nextPageNumber + 4;
+			file->Seek(pageOffset + sizeof(pageType));
+			file->Write(&nextPageOffset, sizeof(nextPageOffset));
+		}
+
 		static const zint32 PAGE_SIZE = 8192;
 		static const zint32 PAGE_FREE_BYTES_INITIAL = PAGE_SIZE - sizeof(zint32) 
 			- sizeof(DbPageType) - sizeof(zint64) * 2;

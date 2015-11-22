@@ -33,6 +33,10 @@ zdb::DbScheme::DbScheme(utils::File* file, bool create, Database* db) : Page(fil
 	{
 		nextScheme = new DbScheme(file, db, (nextPageOffset - 4) / PAGE_SIZE, tables);
 	}
+	else
+	{
+		nextScheme = nullptr;
+	}
 }
 
 zdb::DbScheme::DbScheme(utils::File* file, Database* db, zint32 pageNumber) :
@@ -69,6 +73,10 @@ zdb::DbScheme::DbScheme(utils::File* file, Database* db, zint32 pageNumber,
 	if (nextPageOffset > 0)
 	{
 		nextScheme = new DbScheme(file, db, (nextPageOffset - 4) / PAGE_SIZE, schemes);
+	} 
+	else
+	{
+		nextScheme = nullptr;
 	}
 }
 
@@ -88,7 +96,9 @@ void zdb::DbScheme::AddTable(TableScheme& scheme, zint32 nameLength, const zchar
 	{
 		if (nextScheme == nullptr)
 		{
-			nextScheme = new DbScheme(file, db, db->GetNextPageNumber());
+			auto nextNumber = db->GetNextPageNumber();
+			nextScheme = new DbScheme(file, db, nextNumber);
+			SetNextPage(nextNumber);
 		}
 		nextScheme->AddTable(scheme, nameLength, name);
 	}
@@ -120,7 +130,9 @@ void zdb::DbScheme::AddTable(zint32 pageNumber, const zchar* name, const std::ve
 	{
 		if (nextScheme == nullptr)
 		{
-			nextScheme = new DbScheme(file, db, db->GetNextPageNumber());
+			auto nextNumber = db->GetNextPageNumber();
+			nextScheme = new DbScheme(file, db, nextNumber);
+			SetNextPage(nextNumber);
 		}
 		nextScheme->AddTable(scheme, nameLength, name);
 	}
