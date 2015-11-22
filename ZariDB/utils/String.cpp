@@ -21,6 +21,7 @@ utils::String::String(const zchar* str) : String()
 
 utils::String::String(const String& str)
 {
+	hHeap = GetProcessHeap();
 	length = str.length;
 	string = static_cast<zchar*>(HeapAlloc(hHeap, HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY,
 		sizeof(zchar) * (length + 1)));

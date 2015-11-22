@@ -1,7 +1,8 @@
 #include "DbRecordsPage.h"
 
-zdb::DbRecordsPage::DbRecordsPage(utils::File* file, zint32 pageNumber, zint32 schemePage) 
-	: Page(file, pageNumber, DbPageType::Records)
+zdb::DbRecordsPage::DbRecordsPage(utils::File* file, zint32 pageNumber, zint32 schemePage, 
+	bool create, Database* db)
+	: Page(file, pageNumber, DbPageType::Records, create, db)
 {
 	this->schemePage = schemePage;
 	file->Write(&this->schemePage, sizeof(this->schemePage));

@@ -11,7 +11,9 @@ namespace zdb
 	{
 	public:
 		TableScheme(utils::File* file, zint32 pageNumber, 
-			const std::vector<DbColumn>& columns);
+			const std::vector<DbColumn>& columns, Database* db);
+		TableScheme(utils::File* file, zint32 pageNumber, Database* db);
+		TableScheme(const TableScheme& tableScheme);
 
 	private:
 		std::vector<DbColumn> columns;
