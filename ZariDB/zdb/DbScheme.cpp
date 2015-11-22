@@ -31,7 +31,7 @@ zdb::DbScheme::DbScheme(utils::File* file, bool create, Database* db) : Page(fil
 	}
 	if (nextPageOffset > 0)
 	{
-		nextScheme = new DbScheme(file, db, (nextPageOffset - 4) / PAGE_SIZE, &tables);
+		nextScheme = new DbScheme(file, db, (nextPageOffset - 4) / PAGE_SIZE, tables);
 	}
 }
 
@@ -42,7 +42,7 @@ zdb::DbScheme::DbScheme(utils::File* file, Database* db, zint32 pageNumber) :
 }
 
 zdb::DbScheme::DbScheme(utils::File* file, Database* db, zint32 pageNumber, 
-	std::vector<TableScheme>* schemes) : 
+	std::vector<TableScheme>& schemes) : 
 	Page(file, pageNumber, DbPageType::DbScheme, false, db)
 {
 	auto position = file->Tell();
@@ -64,7 +64,7 @@ zdb::DbScheme::DbScheme(utils::File* file, Database* db, zint32 pageNumber,
 	for (auto it = tablesRecords.begin(); it != tablesRecords.end(); ++it)
 	{
 		TableScheme tableScheme(file, (it->schemeOffset - 4) / PAGE_SIZE, db);
-		schemes->push_back(tableScheme);
+		schemes.push_back(tableScheme);
 	}
 	if (nextPageOffset > 0)
 	{

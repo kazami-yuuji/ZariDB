@@ -23,7 +23,7 @@ namespace zdb
 		explicit DbScheme(utils::File* file, bool create, Database* db);
 		explicit DbScheme(utils::File* file, Database* db, zint32 pageNumber);
 		explicit DbScheme(utils::File* file, Database* db, zint32 pageNumber, 
-			std::vector<TableScheme>* schemes);
+			std::vector<TableScheme>& schemes);
 		DbScheme* nextScheme;
 
 		void AddTable(TableScheme& scheme, zint32 nameLength, const zchar* name);
