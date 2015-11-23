@@ -3,51 +3,21 @@
 int main()
 {
 	auto database = zdb::Database::Open(L"test");
-	/*zdb::DbColumn col1(L"ga;fjsad;fjasdkl;fjgsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col2(L"ga;fjsad;fjasdkl;fgjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col3(L"ga;fjsad;fjasdkl;gfjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col4(L"ga;fjsad;fjasdklg;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col5(L"ga;fjsad;fjasdkgl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col6(L"ga;fjsad;fjasdgkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col7(L"ga;fjsad;fjasgdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col8(L"ga;fjsad;fjagsdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col9(L"ga;fjsad;fjgasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col10(L"ga;fjsad;gfjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col11(L"ga;fjsadg;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col12(L"ga;fjsagd;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col13(L"ga;fjsgad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col14(L"ga;fjgsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col15(L"ga;fgjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col16(L"ga;gfjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col17(L"gag;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col18(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col19(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col20(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	zdb::DbColumn col21(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", DbDataType::Int32);
-	std::vector<zdb::DbColumn> columns = { col1, col2, col3, col4, col5, col6, col7, col8, col9,
-		col10, col11, col12 ,col13, col14, col15 ,col16, col17, col18, col19, col20, col21 };
-	database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);*/
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
-	//database->AddTable(L"gga;fjsad;fjasdkl;fjsda;jv;dajfkadsgfdhjghdfjghwjfkhsdkfhvasdklfhskdlhfajsdhflkasdhflksadhflkasdhflkasdhflksadhfklsadhfkasdhflkasdhfkjasdhfksadhfkjasdhflasdhflkasdhfasdklhfasdklhfasdjkhfasdklhfasdljhf", columns);
+	zdb::DbColumn col11(L"id", DbDataType::Int32);
+	zdb::DbColumn col12(L"title", DbDataType::String);
+	zdb::DbColumn col13(L"description", DbDataType::String);
+	zdb::DbColumn col14(L"mdurl", DbDataType::String);
+	zdb::DbColumn col15(L"pdf", DbDataType::String);
+	zdb::DbColumn col16(L"pub", DbDataType::Int32);
+	std::vector<zdb::DbColumn> columns1 = { col11, col12, col13, col14, col15, col16 };
+	database->AddTable(L"articles", columns1);
+
+	zdb::DbColumn col21(L"id", DbDataType::Int32);
+	zdb::DbColumn col22(L"name", DbDataType::String);
+	zdb::DbColumn col23(L"publication_type_id", DbDataType::Int32);
+	zdb::DbColumn col24(L"publisher_id", DbDataType::Int32);
+	std::vector<zdb::DbColumn> columns2 = { col21, col22, col23, col24 };
+	database->AddTable(L"articles", columns2);
 	delete database;
 	return 0;
 }

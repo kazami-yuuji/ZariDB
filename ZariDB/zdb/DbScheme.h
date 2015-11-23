@@ -8,6 +8,8 @@
 
 namespace zdb
 {
+	struct DbSchemeRecord;
+
 	class DbScheme : public Page
 	{
 	public:
@@ -20,6 +22,7 @@ namespace zdb
 
 	private:
 		std::vector<TableScheme> tables;
+		std::vector<DbSchemeRecord> tablesRecords;
 		explicit DbScheme(utils::File* file, bool create, Database* db);
 		explicit DbScheme(utils::File* file, Database* db, zint32 pageNumber);
 		explicit DbScheme(utils::File* file, Database* db, zint32 pageNumber, 
@@ -45,6 +48,20 @@ namespace zdb
 	{
 		char const* what() const override {
 			return "Name of table is too long (4078 max).";
+		}
+	};
+
+	struct AmbigiousTableNameException : std::exception
+	{
+		char const* what() const override {
+			return "There is a table with such name. Please, choose another one.";
+		}
+	};
+
+	struct AmbigiousColumnNameException : std::exception
+	{
+		char const* what() const override {
+			return "There is a column with such name in the table. Please, choose another one.";
 		}
 	};
 }

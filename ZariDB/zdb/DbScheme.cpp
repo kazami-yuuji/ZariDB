@@ -1,7 +1,8 @@
 #include "DbScheme.h"
 #include "Database.h"
 
-zdb::DbScheme::DbScheme(utils::File* file, bool create, Database* db) : Page(file, 0, DbPageType::DbScheme, create, db)
+zdb::DbScheme::DbScheme(utils::File* file, bool create, Database* db) 
+	: Page(file, 0, DbPageType::DbScheme, create, db)
 {
 	if (create)
 	{
@@ -9,7 +10,6 @@ zdb::DbScheme::DbScheme(utils::File* file, bool create, Database* db) : Page(fil
 		return;
 	}
 	auto position = file->Tell();
-	std::vector<DbSchemeRecord> tablesRecords;
 	while (position != firstFreeByteOffset)
 	{
 		zint32 nameLength;
@@ -50,7 +50,6 @@ zdb::DbScheme::DbScheme(utils::File* file, Database* db, zint32 pageNumber,
 	Page(file, pageNumber, DbPageType::DbScheme, false, db)
 {
 	auto position = file->Tell();
-	std::vector<DbSchemeRecord> tablesRecords;
 	while (position != firstFreeByteOffset)
 	{
 		zint32 nameLength;
@@ -111,7 +110,30 @@ zdb::DbScheme::~DbScheme()
 
 void zdb::DbScheme::AddTable(zint32 pageNumber, const zchar* name, const std::vector<DbColumn>& columns)
 {
+
+	for (auto iterator = tablesRecords.begin(); iterator != tablesRecords.end(); ++iterator)
+	{
+		if (!lstrcmpW(iterator->name.ToString(), name))
+		{
+			throw AmbigiousTableNameException();
+		}
+	}
+
+	for (auto iterator = columns.begin(); iterator != columns.end(); ++iterator)
+	{
+		for (auto internalIterator = (iterator + 1); internalIterator != columns.end(); ++internalIterator)
+		{
+			if (!lstrcmpW(iterator->name, internalIterator->name))
+			{
+				throw AmbigiousColumnNameException();
+			}
+		}
+	}
+
 	TableScheme scheme(file, pageNumber, columns, db);
+	utils::String strName(name);
+	DbSchemeRecord record(strName, scheme.GetPageOffset());
+	tablesRecords.push_back(record);
 	tables.push_back(scheme);
 	auto tableSchemeOffset = scheme.GetPageOffset();
 	auto nameLength = lstrlenW(name);

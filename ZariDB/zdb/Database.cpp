@@ -2,6 +2,7 @@
 #include "../utils/String.h"
 #include "DbScheme.h"
 
+// ReSharper disable once CppPossiblyUninitializedMember
 zdb::Database::Database(const zchar* dbname, bool create)
 {
 	if (create)
