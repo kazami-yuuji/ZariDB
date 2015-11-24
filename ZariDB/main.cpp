@@ -2,7 +2,7 @@
 
 int main()
 {
-	auto database = zdb::Database::Open(L"test");
+	auto database = zdb::Database::Create(L"test");
 	zdb::DbColumn col11(L"id", DbDataType::Int32);
 	zdb::DbColumn col12(L"title", DbDataType::String);
 	zdb::DbColumn col13(L"description", DbDataType::String);
@@ -17,7 +17,7 @@ int main()
 	zdb::DbColumn col23(L"publication_type_id", DbDataType::Int32);
 	zdb::DbColumn col24(L"publisher_id", DbDataType::Int32);
 	std::vector<zdb::DbColumn> columns2 = { col21, col22, col23, col24 };
-	database->AddTable(L"articles", columns2);
+	database->AddTable(L"publications", columns2);
 	delete database;
 	return 0;
 }

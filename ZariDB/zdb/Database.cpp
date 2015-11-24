@@ -58,6 +58,16 @@ void zdb::Database::AddTable(const zchar* name, const std::vector<DbColumn>& col
 	scheme->AddTable(GetNextPageNumber(), name, columns);
 }
 
+std::vector<zdb::Tuple> zdb::Database::Select(const std::vector<zchar*>& selectedTables,
+	const std::vector<zchar*>& selectedColumns, const std::vector<zchar*>& whereColumns,
+	const std::vector<DbRelationalOperationsType>& whereOperations, const std::vector<void*>& whereValues,
+	const std::vector<DbBooleanOperationsType>& whereBoolOperations, const std::vector<zchar*>& sortColumns,
+	const std::vector<zchar*>& sortOrder, const std::vector<zchar*>& groupbyColumns)
+{
+	return scheme->Select(selectedTables, selectedColumns, whereColumns, whereOperations,
+		whereValues, whereBoolOperations, sortColumns, sortOrder, groupbyColumns);
+}
+
 zint32 zdb::Database::GetNextPageNumber()
 {
 	return pageNumber++;

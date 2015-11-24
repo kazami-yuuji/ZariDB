@@ -3,7 +3,7 @@
 #include "../utils/types.h"
 #include "../utils/File.h"
 #include "../utils/String.h"
-#include "DbColumn.h"
+#include "DbStructures.h"
 #include "TableScheme.h"
 
 namespace zdb
@@ -20,6 +20,13 @@ namespace zdb
 		static DbScheme* OpenScheme(utils::File* file, Database* db);
 		static DbScheme* CreateScheme(utils::File* file, Database* db);
 
+		std::vector<Tuple> Select(const std::vector<zchar*>& selectedTables,
+			const std::vector<zchar*>& selectedColumns, const std::vector<zchar*>& whereColumns,
+			const std::vector<DbRelationalOperationsType>& whereOperations, const std::vector<void*>& whereValues,
+			const std::vector<DbBooleanOperationsType>& whereBoolOperations, const std::vector<zchar*>& sortColumns,
+			const std::vector<zchar*>& sortOrder, const std::vector<zchar*>& groupbyColumns);
+
+		std::vector<Tuple> CortesianProduct(const std::vector<TableScheme>& foundTables);
 	private:
 		std::vector<TableScheme> tables;
 		std::vector<DbSchemeRecord> tablesRecords;

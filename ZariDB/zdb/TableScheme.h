@@ -3,8 +3,9 @@
 #include <exception>
 #include "../utils/types.h"
 #include "../utils/File.h"
-#include "DbColumn.h"
+#include "DbStructures.h"
 #include "Page.h"
+#include "DbRecordsPage.h"
 
 namespace zdb
 {
@@ -23,6 +24,7 @@ namespace zdb
 			std::vector<DbColumn>::const_iterator& columnIterator);
 		TableScheme(utils::File* file, zint32 pageNumber, Database* db,
 			std::vector<DbColumn>& columns);
+		DbRecordsPage* recordsPage;
 		std::vector<DbColumn> columns;
 		TableScheme* nextScheme;
 	};
@@ -30,14 +32,16 @@ namespace zdb
 	class ColumnsNumberInvalidException : public std::exception
 	{
 	public:
-		char const* what() const override {
+		char const* what() const override 
+		{
 			return "Columns number should be greater than zero.";
 		}
 	};
 
 	struct TooLongColumnNameException : std::exception
 	{
-		char const* what() const override {
+		char const* what() const override 
+		{
 			return "Name of column is too long (4080 max).";
 		}
 	};

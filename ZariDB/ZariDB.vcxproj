@@ -155,11 +155,12 @@
     <ClInclude Include="utils\String.h" />
     <ClInclude Include="utils\types.h" />
     <ClInclude Include="zdb\Database.h" />
-    <ClInclude Include="zdb\DbColumn.h" />
     <ClInclude Include="zdb\DbDataType.h" />
+    <ClInclude Include="zdb\DbOperationsType.h" />
     <ClInclude Include="zdb\DbPageType.h" />
     <ClInclude Include="zdb\DbRecordsPage.h" />
     <ClInclude Include="zdb\DbScheme.h" />
+    <ClInclude Include="zdb\DbStructures.h" />
     <ClInclude Include="zdb\Page.h" />
     <ClInclude Include="zdb\TableScheme.h" />
   </ItemGroup>

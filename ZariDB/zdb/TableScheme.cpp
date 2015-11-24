@@ -5,7 +5,10 @@ zdb::TableScheme::TableScheme(utils::File* file, zint32 pageNumber,
 	const std::vector<DbColumn>& columns, Database* db) :
 	Page(file, pageNumber, DbPageType::TableScheme, true, db)
 {
+	recordsPage = new DbRecordsPage(file, db->GetNextPageNumber(), true, db);
 	file->Seek(firstFreeByteOffset);
+	auto recordsPageOffset = recordsPage->GetPageOffset();
+	file->Write(&recordsPageOffset, sizeof(recordsPageOffset));
 	this->columns = columns;
 	for (auto iterator = columns.begin(); iterator != columns.end(); ++iterator)
 	{
@@ -25,7 +28,7 @@ zdb::TableScheme::TableScheme(utils::File* file, zint32 pageNumber,
 		file->Write(&iterator->nameLength, sizeof(iterator->nameLength));
 		file->Write(iterator->name, sizeof(*iterator->name) * iterator->nameLength);
 		file->Write(&iterator->dataType, sizeof(iterator->dataType));
-		RewriteFreeBytesValues(currentDataSize);
+		RewriteFreeBytesValues(static_cast<zint32>(currentDataSize));
 		file->Seek(firstFreeByteOffset);
 	}
 	nextScheme = nullptr;
@@ -35,6 +38,10 @@ zdb::TableScheme::TableScheme(utils::File* file, zint32 pageNumber, Database* db
 	Page(file, pageNumber, DbPageType::TableScheme, false, db)
 {
 	auto position = file->Tell();
+	recordsPage = new DbRecordsPage(file, db->GetNextPageNumber(), true, db);
+	file->Seek(firstFreeByteOffset);
+	auto recordsPageOffset = recordsPage->GetPageOffset();
+	file->Write(&recordsPageOffset, sizeof(recordsPageOffset));
 	while (position != firstFreeByteOffset)
 	{
 		zint32 nameLength;
@@ -44,13 +51,15 @@ zdb::TableScheme::TableScheme(utils::File* file, zint32 pageNumber, Database* db
 		file->Read(name, sizeof(zchar) * nameLength);
 		DbDataType dataType;
 		file->Read(&dataType, sizeof(dataType));
-		DbColumn record(name, dataType);
+		bool nullable;
+		file->Read(&nullable, sizeof(nullable));
+		DbColumn record(name, dataType, nullable);
 		columns.push_back(record);
 		position = file->Tell();
 	}
 	if (nextPageOffset != 0)
 	{
-		nextScheme = new TableScheme(file, (nextPageOffset - 4) / PAGE_SIZE, db, columns);
+		nextScheme = new TableScheme(file, static_cast<zint32>((nextPageOffset - 4) / PAGE_SIZE), db, columns);
 	} 
 	else
 	{
@@ -87,7 +96,7 @@ zdb::TableScheme::TableScheme(utils::File* file, zint32 pageNumber, const std::v
 		file->Write(&iterator->nameLength, sizeof(iterator->nameLength));
 		file->Write(iterator->name, sizeof(*iterator->name) * iterator->nameLength);
 		file->Write(&iterator->dataType, sizeof(iterator->dataType));
-		RewriteFreeBytesValues(currentDataSize);
+		RewriteFreeBytesValues(static_cast<zint32>(currentDataSize));
 		file->Seek(firstFreeByteOffset);
 	}
 	nextScheme = nullptr;
@@ -107,13 +116,15 @@ zdb::TableScheme::TableScheme(utils::File* file, zint32 pageNumber,
 		file->Read(name, sizeof(zchar) * nameLength);
 		DbDataType dataType;
 		file->Read(&dataType, sizeof(dataType));
-		DbColumn record(name, dataType);
+		bool nullable;
+		file->Read(&nullable, sizeof(nullable));
+		DbColumn record(name, dataType, nullable);
 		columns.push_back(record);
 		position = file->Tell();
 	}
 	if (nextPageOffset != 0)
 	{
-		nextScheme = new TableScheme(file, (nextPageOffset - 4) / PAGE_SIZE, db, columns);
+		nextScheme = new TableScheme(file, static_cast<zint32>((nextPageOffset - 4) / PAGE_SIZE), db, columns);
 	}
 	else
 	{

@@ -2,7 +2,7 @@
 #include <vector>
 #include "../utils/types.h"
 #include "../utils/File.h"
-#include "DbColumn.h"
+#include "DbStructures.h"
 #include "DbScheme.h"
 
 namespace zdb
@@ -16,6 +16,12 @@ namespace zdb
 		static Database* Open(const zchar* dbname);
 
 		void AddTable(const zchar* name, const std::vector<DbColumn>& columns);
+		std::vector<Tuple> Select(const std::vector<zchar*>& selectedTables,
+			const std::vector<zchar*>& selectedColumns, const std::vector<zchar*>& whereColumns,
+			const std::vector<DbRelationalOperationsType>& whereOperations, const std::vector<void*>& whereValues,
+			const std::vector<DbBooleanOperationsType>& whereBoolOperations, const std::vector<zchar*>& sortColumns,
+			const std::vector<zchar*>& sortOrder, const std::vector<zchar*>& groupbyColumns
+			);
 		zint32 GetNextPageNumber();
 
 		const zchar DEFAULT_PATH[4] = L"zdb";

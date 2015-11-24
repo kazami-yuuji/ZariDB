@@ -14,4 +14,6 @@ typedef long zint32l;
 typedef unsigned long zuint32l;
 typedef long long zint64;
 typedef unsigned long long zuint64;
+typedef float zsingle;
+typedef double zdouble;
 #endif

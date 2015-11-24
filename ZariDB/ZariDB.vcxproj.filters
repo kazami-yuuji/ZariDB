@@ -54,13 +54,16 @@
     <ClInclude Include="zdb\TableScheme.h">
       <Filter>zdb</Filter>
     </ClInclude>
-    <ClInclude Include="zdb\DbColumn.h">
-      <Filter>zdb</Filter>
-    </ClInclude>
     <ClInclude Include="zdb\DbDataType.h">
       <Filter>zdb</Filter>
     </ClInclude>
     <ClInclude Include="zdb\DbRecordsPage.h">
+      <Filter>zdb</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\DbStructures.h">
+      <Filter>zdb</Filter>
+    </ClInclude>
+    <ClInclude Include="zdb\DbOperationsType.h">
       <Filter>zdb</Filter>
     </ClInclude>
   </ItemGroup>

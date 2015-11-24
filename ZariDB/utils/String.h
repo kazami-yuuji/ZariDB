@@ -17,7 +17,12 @@ namespace utils
 
 		String& operator=(const zchar* str);
 		String& operator+=(const zchar* str);
+		bool operator==(const zchar* str);
+		bool operator==(const String& str);
 		friend String& operator+(const String &string, const zchar* str);
+
+		bool Consists(const String& str);
+		bool StartsWith(const String& str);
 
 	private:
 		zchar* string;

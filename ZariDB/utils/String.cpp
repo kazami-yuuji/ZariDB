@@ -62,6 +62,58 @@ utils::String& utils::String::operator+=(const zchar* str)
 	return *this;
 }
 
+bool utils::String::operator==(const zchar* str)
+{
+	return lstrcmpW(this->string, str) == 0;
+}
+
+bool utils::String::Consists(const String& str)
+{
+	auto strlenCurrent = lstrlenW(string);
+	auto strlenParameter = lstrlenW(str.string);
+	for (auto i = 0; i < strlenCurrent; i++)
+	{
+		if (string[i] == str.string[0])
+		{
+			auto confirmed = true;
+			for (auto j = 1; j < strlenParameter; j++)
+			{
+				if (i + j >= strlenCurrent)
+					return false;
+				if (string[i + j] != str.string[j])
+				{
+					confirmed = false;
+					break;
+				}
+			}
+			if (confirmed)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool utils::String::StartsWith(const String& str)
+{
+	auto strlenCurrent = lstrlenW(string);
+	auto strlenParameter = lstrlenW(str.string);
+	for (auto i = 0; i < strlenCurrent; i++)
+	{
+		if (i >= strlenParameter)
+			return true;
+		if (string[i] != str.string[i])
+			return false;
+	}
+	return false;
+}
+
+bool utils::String::operator==(const String& str)
+{
+	return lstrcmpW(this->string, str.string) == 0;
+}
+
 utils::String& utils::operator+(const String& string, const zchar* str)
 {
 	auto strlen = lstrlenW(str);

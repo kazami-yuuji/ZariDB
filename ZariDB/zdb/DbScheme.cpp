@@ -110,7 +110,6 @@ zdb::DbScheme::~DbScheme()
 
 void zdb::DbScheme::AddTable(zint32 pageNumber, const zchar* name, const std::vector<DbColumn>& columns)
 {
-
 	for (auto iterator = tablesRecords.begin(); iterator != tablesRecords.end(); ++iterator)
 	{
 		if (!lstrcmpW(iterator->name.ToString(), name))
@@ -158,7 +157,6 @@ void zdb::DbScheme::AddTable(zint32 pageNumber, const zchar* name, const std::ve
 		}
 		nextScheme->AddTable(scheme, nameLength, name);
 	}
-	
 }
 
 zdb::DbScheme* zdb::DbScheme::OpenScheme(utils::File* file, Database* db)
@@ -171,4 +169,37 @@ zdb::DbScheme* zdb::DbScheme::CreateScheme(utils::File* file, Database* db)
 {
 	auto dbScheme = new DbScheme(file, true, db);
 	return dbScheme;
+}
+
+std::vector<zdb::Tuple> zdb::DbScheme::CortesianProduct(const std::vector<TableScheme>& foundTables)
+{
+	
+}
+
+std::vector<zdb::Tuple> zdb::DbScheme::Select(const std::vector<zchar*>& selectedTables,
+	const std::vector<zchar*>& selectedColumns, const std::vector<zchar*>& whereColumns,
+	const std::vector<DbRelationalOperationsType>& whereOperations, const std::vector<void*>& whereValues,
+	const std::vector<DbBooleanOperationsType>& whereBoolOperations, const std::vector<zchar*>& sortColumns,
+	const std::vector<zchar*>& sortOrder, const std::vector<zchar*>& groupbyColumns)
+{
+	std::vector<zint32> foundTablesIndexes;
+	std::vector<TableScheme> foundTables;
+	for (auto i = 0; i < selectedTables.size(); i++)
+	{
+		auto found = false;
+		for (auto j = 0; j < tablesRecords.size(); j++)
+		{
+			if (!lstrcmpW(tablesRecords[j].name.ToString(), selectedTables[i]))
+			{
+				foundTablesIndexes.push_back(j);
+				found = true;
+				break;
+			}
+		}
+		if (!found)
+		{
+			throw std::exception("Table not found.");
+		}
+	}
+
 }
